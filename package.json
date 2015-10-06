@@ -1,9 +1,9 @@
 {
   "name": "AngularSeo",
   "version": "0.0.0",
-  "description": "",
+  "description": "Angular seo friendly demo application",
   "main": "index.html",
-  "author": "",
+  "author": "Dario Civallero & Alessandro Vidotto",
   "license": "MIT",
   "scripts": {
     "postinstall": "bower install"
