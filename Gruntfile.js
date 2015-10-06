@@ -33,72 +33,6 @@ module.exports = function (grunt) {
                 dest: 'src/resources/components.js'
             }
         },
-        cool_wiredep: {
-            main: {
-                //directory: "src/lib",
-                baseSource: "src",
-                baseDest: "build",
-                src: ['src/index.html'],
-                exclude: [
-                    'lib/bootstrap-sass/assets/javascripts/bootstrap.js', 
-                    'lib/angular/angular.js', 
-                    'lib/components-font-awesome/css/font-awesome.css',
-                    'lib/bootstrap/dist/css/bootstrap.css',
-                    'lib/bootstrap/dist/js/bootstrap.js'
-                ]
-            },
-            dev: {
-                //directory: "src/lib",
-                baseSource: "src",
-                baseDest: "src",
-                src: ['src/index.html']
-            }
-        },
-        cool_inject: {
-            app: {
-                targetFile: "src/index.html",
-                injections: {
-                    js: {
-                        template: '<script src="/{{f}}"></script>'
-                    },
-                    css: {
-                        template: '<link rel="stylesheet" href="/{{f}}" />'
-                    }
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'src/',
-                        src: ['resources/*.js'],
-                        dest: ''
-                    },
-                    {
-                        expand: true,
-                        cwd: 'src/',
-                        src: ['js/*.js'],
-                        dest: ''
-                    },
-                    {
-                        expand: true,
-                        cwd: 'src/',
-                        src: ['components/**/*.js', 'modules/**/*.js'],
-                        dest: ''
-                    },
-                    {
-                        expand: true,
-                        cwd: 'src/',
-                        src: ['components/**/*.css', 'modules/**/*.css'],
-                        dest: ''
-                    },
-                    {
-                        expand: true,
-                        cwd: 'src/',
-                        src: ['css/**/*.css'],
-                        dest: ''
-                    }
-                ]
-            }
-        },
         copy: {
             dev: {
                 files: [
@@ -109,12 +43,6 @@ module.exports = function (grunt) {
                         src: ['**/fonts/**/*'],
                         dest: 'src/fonts/',
                         filter: 'isFile'
-                    },
-                    {
-                        expand: true,
-                        cwd: "src/",
-                        src: ['index.html'],
-                        dest: '../back/html/'
                     }
                 ]
             }
@@ -159,20 +87,36 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        wiredep: {
+            task: {
+                src: ['src/index.html']
+            }
+        },
+        includeSource: {
+            options: {
+                basePath: "src"
+            },
+            mytarget: {
+                files: {
+                    'src/index.html': 'src/index.html'
+                }
+            }
         }
+
     });
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-json');
     grunt.loadNpmTasks('grunt-html2js');
-    grunt.loadNpmTasks('grunt-cool-wiredep');
-    grunt.loadNpmTasks('grunt-cool-inject');
+    grunt.loadNpmTasks('grunt-wiredep');
+    grunt.loadNpmTasks('grunt-include-source');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-html-snapshot');
 
 
     // Default task(s).
-    grunt.registerTask('develop', ['json', 'html2js:modules_dev', 'html2js:components_dev', 'cool_wiredep:dev', 'cool_inject', 'copy:dev', 'clean:snapshot', 'htmlSnapshot']);
+    grunt.registerTask('develop', ['json', 'html2js:modules_dev', 'html2js:components_dev', 'wiredep', 'includeSource', 'copy:dev', 'clean:snapshot', 'htmlSnapshot']);
     grunt.registerTask('snapshot', ['clean:snapshot', 'htmlSnapshot']);
 };
