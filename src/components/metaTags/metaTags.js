@@ -24,7 +24,7 @@ angular.module('AngularSeo')
                         var m = manifest.getManifest(moduleName);
                         $scope.metaTitle = (m.meta && m.meta.title) ? m.meta.title : "";
                         $scope.meta = m.meta;
-                        delete $scope.meta.title;
+                        //delete $scope.meta.title;
                     };
 
                     $rootScope.$on("$locationChangeSuccess", function($event, newUrl){
