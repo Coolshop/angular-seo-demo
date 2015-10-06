@@ -4,10 +4,8 @@
     var dep = [
         'ng',
         'ngRoute',
-        'ngResource',
         'ngSanitize',
         'angular-navigation',
-        'viewhead',
         'templates-modules',
         'templates-components'
 

@@ -99,14 +99,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-
-        compass: {
-            options: {
-                importPath:  ["src/sass/", "src/sass/partials"],
-                raw: 'preferred_syntax = :sass\n',
-                force: true
-            }
-        },
         copy: {
             dev: {
                 files: [
@@ -139,18 +131,6 @@ module.exports = function (grunt) {
                 },
                 src: ['src/modules/**/manifest.json'],
                 dest: 'src/resources/manifests.js'
-            }
-        },
-        myCompass: {
-            main: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: "src/",
-                        src: ['**/*.scss', '!lib/**/*'],
-                        dest: 'build/'
-                    }
-                ]
             }
         },
         clean: {
@@ -187,27 +167,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-cool-wiredep');
     grunt.loadNpmTasks('grunt-cool-inject');
-    grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-html-snapshot');
 
-    grunt.registerMultiTask('myCompass', 'The humblest Grunt plugin ever.', function () {
-        var path = require('path');
-        var dirs = {};
-        for (var x in this.files) {
-            dirs[path.dirname(this.files[x].src)] = path.dirname(path.dirname(this.files[x].src)) + "/css";
-        }
-
-        var i = 0;
-        for (var x in dirs) {
-            grunt.config.set('compass.p' + (++i) + '.options.sassDir', x);
-            grunt.config.set('compass.p' + i + '.options.cssDir', dirs[x]);
-        }
-        grunt.task.run('compass');
-    });
 
     // Default task(s).
-    grunt.registerTask('develop', ['json', 'html2js:modules_dev', 'html2js:components_dev', 'cool_wiredep:dev', 'myCompass', 'cool_inject', 'copy:dev', 'clean:snapshot', 'htmlSnapshot']);
+    grunt.registerTask('develop', ['json', 'html2js:modules_dev', 'html2js:components_dev', 'cool_wiredep:dev', 'cool_inject', 'copy:dev', 'clean:snapshot', 'htmlSnapshot']);
     grunt.registerTask('snapshot', ['clean:snapshot', 'htmlSnapshot']);
 };
