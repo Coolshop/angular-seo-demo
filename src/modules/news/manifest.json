@@ -1,0 +1,8 @@
+{
+  "name": "news",
+  "ctrl": "NewsIndexCtrl",
+  "meta": {
+    "title": "Angular + SEO | News",
+    "description": "News module"
+  }
+}

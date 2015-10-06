@@ -1,0 +1,8 @@
+{
+  "name": "about-us",
+  "ctrl": "AboutUsIndexCtrl",
+  "meta": {
+    "title": "Angular + SEO | About Us",
+    "description": "About Us module"
+  }
+}
