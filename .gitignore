@@ -1,0 +1,8 @@
+/angular-seo.iml
+.idea
+node_modules
+.sass-cache
+snapshots/*.html
+src/lib
+src/resources
+src/fonts

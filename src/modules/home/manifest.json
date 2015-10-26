@@ -1,0 +1,10 @@
+{
+  "name": "home",
+  "url": "",
+  "ctrl": "HomeIndexCtrl",
+  "otherwise": true,
+  "meta": {
+    "title": "Angular + SEO | Home",
+    "description": "Home module"
+  }
+}

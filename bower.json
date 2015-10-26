@@ -1,0 +1,16 @@
+{
+  "name": "AngularSeo",
+  "version": "0.0.0",
+  "authors": [
+    "Coolshop <info@coolshop.it>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-sanitize": "1.4.x",
+    "angular-route": "1.4.x",
+    "bootstrap": "3.3.x"
+  }
+}
